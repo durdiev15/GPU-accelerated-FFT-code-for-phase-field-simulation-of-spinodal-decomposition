@@ -89,7 +89,7 @@ Note: Use .h5 if the grid points are very large (>128 in each direction).
 
 Animated 3D results:
 
-![Animated 3D results](results/cahn_hilliard_3d.gif)
+![Animated 3D results](results/animated_2D.gif)
 
 Total energy over time:
 
