@@ -23,7 +23,7 @@ pip install torch h5py vtk matplotlib numpy pyvista
 
 1. Clone the repository:
     ```bash
-    git clone https://git.rwth-aachen.de/dilshod.durdiev/gpu-accelerated-fft-code-for-phase-field-simulation-of-spinodal-decomposition.git
+    git clone https://github.com/durdiev15/GPU-accelerated-FFT-code-for-phase-field-simulation-of-spinodal-decomposition.git
     cd spinodal-decomposition
     ```
 
