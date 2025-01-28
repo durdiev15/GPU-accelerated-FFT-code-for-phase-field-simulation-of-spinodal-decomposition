@@ -87,7 +87,7 @@ The simulation results are saved in the `results` directory. At each time step, 
 
 Note: Use .h5 if the grid points are very large (>128 in each direction).
 
-Animated 2D results:
+Animated 3D results (for `Nx=128`, `Ny=128` and `Nz=128`):
 
 ![Animated 3D results](results/cahn_hilliard_3d.gif)
 
