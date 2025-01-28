@@ -77,7 +77,7 @@ def CahnHilliard(folder:str, sim_params:dict, c:torch.tensor, device:torch.devic
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
         
-    return total_energy_data
+    return torch.tensor(total_energy_data)
 
 def main():
     
@@ -114,7 +114,6 @@ def main():
     # Choose device: "cpu" or "cuda"
     if torch.cuda.is_available():
         device = torch.device("cuda")  # Use CUDA
-        # print(torch.cuda.get_device_name(0))
         print(f"Device: {device}")
     else:
         device = torch.device("cpu")  # Use CPU
@@ -132,7 +131,7 @@ def main():
                         device=device)
     
     # Plot the total energy over time
-    PlotTotalEnergy(results_directory, total_energy_data)
+    PlotTotalEnergy(results_directory, total_energy_data.cpu().numpy())
 
     # Read .h5 file
     ReadHDF5(results_directory)
