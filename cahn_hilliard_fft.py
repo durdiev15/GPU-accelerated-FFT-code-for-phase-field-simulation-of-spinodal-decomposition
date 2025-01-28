@@ -8,6 +8,7 @@ import torch # ML library, but we will use its FFT functions
 from torch.fft import fftn as fft, ifftn as ifft # Only FFT and IFFT needed
 import os # Directory operations
 import shutil # File manipulation
+import timeit
 
 from fourier_frequencies import FourierFrequencies # Computes Fourier wave vectors
 from write_to_hdf5 import WriteToHDF5 # Saves data to .h5 files
@@ -22,11 +23,11 @@ def CahnHilliard(folder:str, sim_params:dict, c:torch.tensor, device:torch.devic
     # Save initial data with simulation parameters  
     WriteToHDF5(folder=folder,
                 step=0,
-                data=c.to(torch.device("cpu")),
+                data=c.cpu(),
                 SimulationParameters=sim_params) # for .h5
     WriteScalarToVTK(folder=folder,
                      step=0,
-                     scalar_field=c.to(torch.device("cpu")),
+                     scalar_field=c.cpu(),
                      dx=sim_params['dx'],
                      dy=sim_params['dy'],
                      dz=sim_params['dz']) # for .vtk
@@ -65,9 +66,9 @@ def CahnHilliard(folder:str, sim_params:dict, c:torch.tensor, device:torch.devic
 
         # Save
         if (step + 1) % sim_params['nt'] == 0:
-            WriteToHDF5(folder, step+1, c.to(torch.device("cpu")), GradientEnergy=grad_energy, DoubleWellPotential=dw_potential) # for .h5
-            WriteScalarToVTK(folder, step+1, c.to(torch.device("cpu")), dx=sim_params['dx'], dy=sim_params['dy'], dz=sim_params['dz']) # for .vtk
-            PlotResults2D(folder, step+1, c[:,:,sim_params['Nz']//2]) # 2D slice plots 
+            WriteToHDF5(folder, step+1, c.cpu(), GradientEnergy=grad_energy.cpu(), DoubleWellPotential=dw_potential.cpu()) # for .h5
+            WriteScalarToVTK(folder, step+1, c.cpu(), dx=sim_params['dx'], dy=sim_params['dy'], dz=sim_params['dz']) # for .vtk
+            PlotResults2D(folder, step+1, c[:,:,sim_params['Nz']//2].cpu().numpy()) # 2D slice plots 
 
         total_energy_data.append(torch.mean(grad_energy + dw_potential)*volume)
 
@@ -82,11 +83,12 @@ def main():
     
     # This is the directory where we will save data
     results_directory = os.getcwd() + "/results"
+    print(f"\nPWD: {results_directory}\n")
 
     # Check if the directory exists
     if os.path.exists(results_directory):
         shutil.rmtree(results_directory) # remove it
-        os.makedirs(results_directory) # create 
+    os.makedirs(results_directory) # create 
 
     # Check if the .h5 file exists
     if os.path.exists(f"{results_directory}/results.h5"):
@@ -100,11 +102,11 @@ def main():
         'k_grad': 0.5,
         
         # Grid parameters
-        'Nx': 64, 'Ny': 64, 'Nz': 64,
+        'Nx': 128, 'Ny': 128, 'Nz': 128,
         'dx': 1, 'dy': 1, 'dz': 1,
         
         # Simulation time parameters
-        'nsteps': 1000,
+        'nsteps': 500,
         'nt': 100,
         'dt': 5e-2    
     }
@@ -113,8 +115,10 @@ def main():
     if torch.cuda.is_available():
         device = torch.device("cuda")  # Use CUDA
         # print(torch.cuda.get_device_name(0))
+        print(f"Device: {device}")
     else:
         device = torch.device("cpu")  # Use CPU
+        print(f"Device: {device}")
 
     # Initial concentration
     torch.manual_seed(43)

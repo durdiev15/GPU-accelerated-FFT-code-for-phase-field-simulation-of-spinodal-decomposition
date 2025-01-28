@@ -74,7 +74,7 @@ def PlotTotalEnergy(folder:str, energy:np.array):
     # Save and display the plot
     plt.tight_layout()
     plt.savefig(f"{folder}/energy_time.png", dpi=300)
-    plt.show()
+    plt.sclose(fig)
 
 def PlotResults3D(folder, step, data, N_shape, d_shape):
     Nx, Ny, Nz = N_shape
