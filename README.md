@@ -85,6 +85,9 @@ The simulation results are saved in the `results` directory. At each time step, 
 * **.vtk files**: Contain scalar field data for visualization in ParaView.
 * **Plots**: 2D slices of the concentration field at the middle of the grid and total energy plots are saved as images.
 
+![Animated 3D results](results/cahn_hilliard_3d.gif)
+![Total energy over time](results/energy_time.png)
+
 Note: Use .h5 if the grid points are very large (>128 in each direction).
 
 ## License
