@@ -16,7 +16,7 @@ This repository contains an implementation of GPU-accelerated phase-field simula
 To use this code, you will need to have Python installed along with PyTorch and several other dependencies. You can install the necessary dependencies using the following command:
 
 ```bash
-pip install torch h5py vtk matplotlib numpy
+pip install torch h5py matplotlib numpy
 ```
 
 ## Usage
