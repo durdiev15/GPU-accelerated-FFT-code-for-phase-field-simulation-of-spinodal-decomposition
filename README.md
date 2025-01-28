@@ -97,4 +97,4 @@ Total energy over time:
 
 ## License
 
-This code is released under the MIT License. See the  LICENSE  file for more details.
+This code is released under the MIT License. See the  <a href="https://github.com/durdiev15/GPU-accelerated-FFT-code-for-phase-field-simulation-of-spinodal-decomposition/blob/main/LICENSE">LICENSE</a>  file for more details.
