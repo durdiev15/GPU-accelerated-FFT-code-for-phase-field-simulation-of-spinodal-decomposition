@@ -24,7 +24,6 @@ pip install torch h5py vtk matplotlib numpy pyvista
 1. Clone the repository:
     ```bash
     git clone https://github.com/durdiev15/GPU-accelerated-FFT-code-for-phase-field-simulation-of-spinodal-decomposition.git
-    cd spinodal-decomposition
     ```
 
 2. Modify the simulation parameters in the `main()` function in `cahn_hilliard_fft.py` as desired. For instance, you can adjust the grid size, the number of time steps, and other material parameters.
