@@ -125,11 +125,13 @@ def main():
 
 
     # Run the simulation
+    start_tm = timeit.default_timer()
     total_energy_data = CahnHilliard(folder=results_directory,
                         sim_params=sim_params,
                         c=c.to(device),
                         device=device)
-    
+    stop_tm = timeit.default_timer()
+    print(f"Execution time: {format((stop_tm - start_tm) / 60, '.3f')} min")
     # Plot the total energy over time
     PlotTotalEnergy(results_directory, total_energy_data.cpu().numpy())
 
