@@ -1,6 +1,6 @@
 # GPU-Accelerated FFT Code for Phase-Field Simulation of Spinodal Decomposition
 
-This repository contains an implementation of GPU-accelerated phase-field simulations of spinodal decomposition in 3D using PyTorch. The code utilizes Fast Fourier Transform (FFT) methods to efficiently compute derivatives, making it suitable for large-scale simulations. The example is based on the Cahn-Hilliard equation for spinodal decomposition and comes from the book *Programming Phase-Field Modeling (Case Study 6, page 102)*.
+This repository contains an implementation of GPU-accelerated phase-field simulations of spinodal decomposition in 3D using PyTorch. The code utilizes Fast Fourier Transform (FFT) methods to efficiently compute derivatives, making it suitable for large-scale simulations. 
 
 ## Table of Contents
 
